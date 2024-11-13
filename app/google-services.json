@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "796974474497",
+    "project_id": "verduritas-sa-sebastianvielma",
+    "storage_bucket": "verduritas-sa-sebastianvielma.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796974474497:android:a9df0a4a71d83abe28a700",
+        "android_client_info": {
+          "package_name": "sebastian.vielma.verduritassa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796974474497-bksulkrcpcfbtmctvqhedhe5cmhvg66j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNfNUviphU4d-03eCID_UJDh3Z_v_BDg8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796974474497-bksulkrcpcfbtmctvqhedhe5cmhvg66j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
