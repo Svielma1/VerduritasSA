@@ -90,10 +90,11 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     // Sign in success, update UI with the signed-in user's information
                     Intent listaCultivos = new Intent(MainActivity.this, ListaCultivosActivity.class);
+                    listaCultivos.putExtra("email", email);
                     startActivity(listaCultivos);
                 } else {
                     // If sign in fails, display a message to the user.
-                    Toast.makeText(MainActivity.this, "Authentication failed.",
+                    Toast.makeText(MainActivity.this, "Credenciales incorrectas.",
                             Toast.LENGTH_SHORT).show();
                 }
             }
