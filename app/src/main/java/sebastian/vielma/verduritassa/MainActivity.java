@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent listaCultivos = new Intent(MainActivity.this, ListaCultivosActivity.class);
                     listaCultivos.putExtra("email", email);
                     startActivity(listaCultivos);
+                    finish();
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(MainActivity.this, "Credenciales incorrectas.",

@@ -24,7 +24,7 @@
 
         <!-- Logo -->
         <ImageView
-            android:id="@+id/logoutButton"
+            android:id="@+id/backButton"
             android:layout_width="145dp"
             android:layout_height="146dp"
             android:layout_marginBottom="30dp"
@@ -48,7 +48,8 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_edittext"
             android:hint="Ingrese su email"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="#424242" />
 
         <!-- Password Label -->
         <TextView
@@ -68,12 +69,13 @@
             android:background="@drawable/rounded_edittext"
             android:hint="Ingrese su contraseña"
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="300dp"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/botones_inicio"
             android:text="Ingresar"

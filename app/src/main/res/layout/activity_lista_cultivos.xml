@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF"
     tools:context=".ListaCultivosActivity">
 
     <LinearLayout
@@ -25,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="Verduritas SA"
+            android:text="Verduritas SA."
             android:textColor="#424242"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -36,7 +37,7 @@
             app:layout_constraintTop_toTopOf="@+id/view" />
 
         <ImageView
-            android:id="@+id/logoutButton"
+            android:id="@+id/backButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="30dp"
@@ -66,13 +67,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#424242" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="#9CEC32" >
 
                 <TextView
                     android:id="@+id/textView3"
@@ -82,10 +85,11 @@
                     android:layout_weight="1"
                     android:text="Tus cosechas"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#424242" />
 
                 <ImageView
-                    android:id="@+id/plusImageView"
+                    android:id="@+id/agregarCultivoBtn"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="30dp"

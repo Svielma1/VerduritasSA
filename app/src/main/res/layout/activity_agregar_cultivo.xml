@@ -5,6 +5,118 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AgregarCultivoActivity">
+    tools:context=".AgregarCultivoActivity"
+    android:background="#F8FDF2" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="308dp"
+        android:layout_height="502dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.595">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Alias"
+            android:textColor="#3D550C"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/alias"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp"
+            android:textColor="#424242" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Fecha de siembra"
+            android:textColor="#3D550C"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/fechaPlante"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_edittext"
+            android:clickable="true"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="none"
+            android:textColor="#424242" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Planta"
+            android:textColor="#3D550C"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/cultivo"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/rounded_edittext"
+            android:entries="@array/verduras" />
+
+        <Button
+            android:id="@+id/registrar"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:backgroundTint="#8BC34A"
+            android:text="Guardar"
+            android:textColor="#424242"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="412dp"
+        android:layout_height="100dp"
+        android:background="#9CEC32"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="30dp"
+            android:contentDescription="back"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Verduritas SA."
+            android:textAlignment="center"
+            android:textColor="#424242"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

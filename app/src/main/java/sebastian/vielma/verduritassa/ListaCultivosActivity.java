@@ -4,22 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -29,8 +26,9 @@ import java.util.List;
 public class ListaCultivosActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    FirebaseUser currentUser;
     private TextView bienvenida;
-    private ImageView logoutButton;
+    private ImageView logoutButton, agregarCultivoBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +44,14 @@ public class ListaCultivosActivity extends AppCompatActivity {
         // Obtener una instancia de Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         ListView lista = findViewById(R.id.lista);
         bienvenida = findViewById(R.id.bienvenida);
-        logoutButton = findViewById(R.id.logoutButton);
+        logoutButton = findViewById(R.id.backButton);
+        agregarCultivoBtn = findViewById(R.id.agregarCultivoBtn);
 
+        // Cerrar sesion
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,9 +63,19 @@ public class ListaCultivosActivity extends AppCompatActivity {
             }
         });
 
+        // Agregar un cultivo
+        agregarCultivoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent agregarCultivo = new Intent(ListaCultivosActivity.this, AgregarCultivoActivity.class);
+                startActivity(agregarCultivo);
+            }
+        });
+
         // Consultar la colección "usuarios"
-        String email = getIntent().getStringExtra("email");
-        db.collection("cultivos").whereEqualTo("userEmail", email)
+        String userEmail = currentUser.getEmail();
+        System.out.println(userEmail);
+        db.collection("cultivos").whereEqualTo("userEmail", userEmail)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -75,15 +86,14 @@ public class ListaCultivosActivity extends AppCompatActivity {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             // Obtener los datos del documento
                             String alias = document.getString("alias");
-                            String fechaCosecha = document.getString("fechaCocecha");
+                            String fechaCosecha = document.getString("fechaCosecha");
 
                             // Agregar el nombre del usuario a la lista para mostrar
                             listaUsuarios.add(alias + ", " + fechaCosecha);
                         }
 
-
                         // Mostrar la lista en un TextView o ListView
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaUsuarios);
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item, R.id.texto_item, listaUsuarios);
                         lista.setAdapter(adapter);
 
                         // Aquí puedes actualizar tu UI con los datos de la lista
@@ -92,26 +102,22 @@ public class ListaCultivosActivity extends AppCompatActivity {
                     }
                 });
 
-        db.collection("usuarios").whereEqualTo("email", email)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        // Recorrer los resultados de la consulta
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            // Obtener los datos del documento
-                            String nombreStr = document.getString("nombre");
-                            bienvenida.setText("Bienvenido " + nombreStr);
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Error al leer los datos", Toast.LENGTH_SHORT).show();
+        // Mensaje de bienvenida al usuario
+        db.collection("usuarios").whereEqualTo("email", userEmail)
+            .get()
+            .addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    // Recorrer los resultados de la consulta
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        // Obtener los datos del documento
+                        String nombreStr = document.getString("nombre");
+                        bienvenida.setText("Bienvenido " + nombreStr);
                     }
-                });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error al leer los datos", Toast.LENGTH_SHORT).show();
+                }
+            });
 
     }
 
-
 }
-
-// rescatar id en firebase
-// FirebaseUser user = mAuth.getCurrentUser();
-// user.getUid();
