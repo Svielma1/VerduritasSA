@@ -28,7 +28,6 @@ import org.jetbrains.annotations.NotNull;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private SignInClient oneTapClient;
 
     private EditText email, password;
     private Button loginButton;
@@ -68,8 +67,10 @@ public class MainActivity extends AppCompatActivity {
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Google Sign-In Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Google", Toast.LENGTH_SHORT).show();
                 // Aquí puedes implementar la autenticación con Google
+
+
             }
         });
 
@@ -88,13 +89,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    // Sign in success, update UI with the signed-in user's information
                     Intent listaCultivos = new Intent(MainActivity.this, ListaCultivosActivity.class);
                     listaCultivos.putExtra("email", email);
                     startActivity(listaCultivos);
                     finish();
                 } else {
-                    // If sign in fails, display a message to the user.
                     Toast.makeText(MainActivity.this, "Credenciales incorrectas.",
                             Toast.LENGTH_SHORT).show();
                 }

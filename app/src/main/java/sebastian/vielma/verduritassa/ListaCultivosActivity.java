@@ -72,31 +72,29 @@ public class ListaCultivosActivity extends AppCompatActivity {
             }
         });
 
-        // Consultar la colección "usuarios"
+        // Consultar la colección "cultivos"
         String userEmail = currentUser.getEmail();
         System.out.println(userEmail);
         db.collection("cultivos").whereEqualTo("userEmail", userEmail)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        // Limpiar la lista antes de agregar los nuevos datos
-                        List<String> listaUsuarios = new ArrayList<>();
+                        List<Cultivo> listaCultivos = new ArrayList<>();
 
-                        // Recorrer los resultados de la consulta
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            // Obtener los datos del documento
+                            String idDocumento = document.getId();
                             String alias = document.getString("alias");
                             String fechaCosecha = document.getString("fechaCosecha");
 
-                            // Agregar el nombre del usuario a la lista para mostrar
-                            listaUsuarios.add(alias + ", " + fechaCosecha);
+
+                            // Agregar cultivo a la lista para mostrar
+                            Cultivo cultivo = new Cultivo(idDocumento, alias, fechaCosecha);
+                            listaCultivos.add(cultivo);
                         }
 
-                        // Mostrar la lista en un TextView o ListView
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item, R.id.texto_item, listaUsuarios);
-                        lista.setAdapter(adapter);
+                        CustomAdapter pintarLista = new CustomAdapter(ListaCultivosActivity.this, listaCultivos);
+                        lista.setAdapter(pintarLista);
 
-                        // Aquí puedes actualizar tu UI con los datos de la lista
                     } else {
                         Toast.makeText(getApplicationContext(), "Error al leer los datos", Toast.LENGTH_SHORT).show();
                     }
@@ -107,9 +105,7 @@ public class ListaCultivosActivity extends AppCompatActivity {
             .get()
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    // Recorrer los resultados de la consulta
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        // Obtener los datos del documento
                         String nombreStr = document.getString("nombre");
                         bienvenida.setText("Bienvenido " + nombreStr);
                     }
@@ -117,6 +113,8 @@ public class ListaCultivosActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Error al leer los datos", Toast.LENGTH_SHORT).show();
                 }
             });
+
+
 
     }
 

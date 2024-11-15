@@ -54,7 +54,6 @@ public class RegistroActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //rescata valores de los EditText
                 String emailStr = email.getText().toString();
                 String contrasenaStr = password.getText().toString();
 
@@ -75,8 +74,6 @@ public class RegistroActivity extends AppCompatActivity {
                 String generoStr = genero.getText().toString();
 
                 if (task.isSuccessful()) {
-                    //guarda datos del usuario en coleccion usuarios
-                    // Crear un objeto para almacenar datos
                     Map<String, Object> usuario = new HashMap<>();
                     usuario.put("nombre", nombreStr);
                     usuario.put("email", email);
@@ -96,7 +93,6 @@ public class RegistroActivity extends AppCompatActivity {
                     Intent listaCultivos = new Intent(RegistroActivity.this, ListaCultivosActivity.class);
                     startActivity(listaCultivos);
                 } else {
-                    // If sign in fails, display a message to the user.
                     Toast.makeText(RegistroActivity.this, "Authentication failed",
                             Toast.LENGTH_SHORT).show();
                 }
