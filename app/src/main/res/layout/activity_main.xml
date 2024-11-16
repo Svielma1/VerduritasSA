@@ -83,6 +83,8 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+
+        <!-- Register Text -->
         <Button
             android:id="@+id/botonGoogleLogin"
             android:layout_width="300dp"
@@ -90,14 +92,11 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/white"
             android:drawableLeft="@drawable/logo_google"
-            android:padding="10dp"
             android:text="Continuar con google"
             android:textColor="#424242"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-
-        <!-- Register Text -->
         <TextView
             android:id="@+id/registerTextView"
             android:layout_width="wrap_content"
